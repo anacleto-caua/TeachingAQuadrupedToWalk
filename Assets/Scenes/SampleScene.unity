@@ -1540,6 +1540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1804293462}
+  - component: {fileID: 1804293463}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -1567,6 +1568,43 @@ Transform:
   - {fileID: 1630777965}
   m_Father: {fileID: 334705455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1804293463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804293461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 1804293462}
+  - {fileID: 581271474}
+  - {fileID: 973275702}
+  - {fileID: 92741532}
+  - {fileID: 219016295}
+  - {fileID: 132689678}
+  - {fileID: 1726254994}
+  - {fileID: 1629034400}
+  - {fileID: 2030992443}
+  - {fileID: 1797347730}
+  - {fileID: 1086907988}
+  - {fileID: 1007981424}
+  - {fileID: 739759435}
+  - {fileID: 2003535151}
+  - {fileID: 1630777965}
+  - {fileID: 928311544}
+  - {fileID: 1022159201}
+  - {fileID: 623275266}
 --- !u!1 &2003535150
 GameObject:
   m_ObjectHideFlags: 0
