@@ -14,8 +14,8 @@ public class IndividualMovement : MonoBehaviour
  
         // sweet move vars
         public float xSpeed = .1f;
-        public float ySpeed = .3f;
-        public float pico = 3;
+        public float ySpeed = .2f;
+        public float pico = .5f;
         public Vector3 oldPosition;
         public bool isIntoSweetMove = false;
 
@@ -30,7 +30,7 @@ public class IndividualMovement : MonoBehaviour
         {
             this.LegIk = LegIk;
             this.speed = speed;
-            this.oldPosition = Vector3.zero;
+            this.oldPosition = LegIk.position;
             AddDirs(dirs);
         }
 
@@ -66,10 +66,12 @@ public class IndividualMovement : MonoBehaviour
                 isIntoSweetMove = true;
                 oldPosition = LegIk.position;
             }
-            else if(isIntoSweetMove && oldPosition != LegIk.position && LegIk.position.y == 0)
+            
+            if(isIntoSweetMove && oldPosition != LegIk.position && LegIk.position.y == 0)
             {
                 // Just finished this sweet move
                 isIntoSweetMove = false;
+                oldPosition = LegIk.position;
                 return;
             }
 
@@ -151,9 +153,10 @@ public class IndividualMovement : MonoBehaviour
             {
                 stepIndex = 0;
             }
+
+            CenterBodyPivot();
         }
 
-        CenterBodyPivot();
     }
 
     private void CenterBodyPivot() {
@@ -178,9 +181,11 @@ public class IndividualMovement : MonoBehaviour
         NewCenter.y += br_ik.position.y;
         NewCenter.y += bl_ik.position.y;
         NewCenter.y /= 4;
-        NewCenter.y = 0;
+        NewCenter.y = bodyPivot.position.y;
 
         bodyPivot.position = NewCenter;
+
+        Debug.Log("BodyPivot gone from: " + bodyPivot.position + " to: " + NewCenter);
     }
 
     /*
