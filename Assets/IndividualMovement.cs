@@ -13,25 +13,28 @@ public class IndividualMovement : MonoBehaviour
         public float speed = 30f;
  
         // sweet move vars
-        public float xSpeed = .1f;
-        public float ySpeed = .2f;
-        public float pico = .5f;
+        public float xSpeed = .3f;
+        public float ySpeed = .17f;
+        public float pico = .3f;
         public Vector3 oldPosition;
         public bool isIntoSweetMove = false;
 
         public int step = 0;
+
+        public Quaternion fatherRotation;
 
         public Leg(Transform LegIk)
         {
             this.LegIk = LegIk;
         }
 
-        public Leg(Transform LegIk, List<Vector3> dirs, float speed)
+        public Leg(Transform LegIk, List<Vector3> dirs, float speed, Quaternion fatherRotation)
         {
             this.LegIk = LegIk;
             this.speed = speed;
             this.oldPosition = LegIk.position;
             AddDirs(dirs);
+            this.fatherRotation = fatherRotation;
         }
 
         public void AddDirs(List<Vector3> dirs)
@@ -81,6 +84,8 @@ public class IndividualMovement : MonoBehaviour
 
             Vector3 deslocamento = new Vector3(xSpeed, ySpeed, 0) * Time.deltaTime;
 
+            deslocamento = fatherRotation * deslocamento;
+
             if (LegIk.position.y + deslocamento.y > pico && ySpeed > 0)
             {
                 deslocamento.y = pico - LegIk.position.y;
@@ -128,10 +133,10 @@ public class IndividualMovement : MonoBehaviour
         
         Legs = new List<Leg>
         {
-            new Leg(fr_ik, dirs_fr, speed),
-            new Leg(fl_ik, dirs_fr, speed),
-            new Leg(br_ik, dirs_fr, speed),
-            new Leg(bl_ik, dirs_fr, speed)
+            new Leg(fr_ik, dirs_fr, speed, transform.rotation),
+            new Leg(fl_ik, dirs_fr, speed, transform.rotation),
+            new Leg(br_ik, dirs_fr, speed, transform.rotation),
+            new Leg(bl_ik, dirs_fr, speed, transform.rotation)
         };
     }
 
@@ -154,7 +159,7 @@ public class IndividualMovement : MonoBehaviour
                 stepIndex = 0;
             }
 
-            CenterBodyPivot();
+            //CenterBodyPivot();
         }
 
     }
